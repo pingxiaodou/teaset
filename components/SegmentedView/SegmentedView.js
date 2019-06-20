@@ -21,10 +21,11 @@ export default class SegmentedView extends Component {
     //SegmentedBar
     barStyle: ViewPropTypes.style,
     justifyItem: PropTypes.oneOf(['fixed', 'scrollable']),
-    indicatorType: PropTypes.oneOf(['none', 'boxWidth', 'itemWidth']),
+    indicatorType: PropTypes.oneOf(['none', 'boxWidth', 'itemWidth', 'customWidth']),
     indicatorPosition: PropTypes.oneOf(['top', 'bottom']),
     indicatorLineColor: PropTypes.string,
     indicatorLineWidth: PropTypes.number,
+    indicatorWidth: PropTypes.number,
     indicatorPositionPadding: PropTypes.number,
     animated: PropTypes.bool,
     autoScroll: PropTypes.bool,
@@ -36,6 +37,7 @@ export default class SegmentedView extends Component {
     ...View.defaultProps,
     type: 'projector',
     barPosition: 'top',
+    indicatorStyle:{}
   };
 
   static Sheet = SegmentedSheet;
@@ -96,7 +98,7 @@ export default class SegmentedView extends Component {
   }
 
   renderBar() {
-    let {barPosition, barStyle, justifyItem, indicatorType, indicatorPosition, indicatorLineColor, indicatorLineWidth, indicatorPositionPadding, animated, autoScroll, onChange} = this.props;
+    let {barPosition, barStyle, justifyItem, indicatorType, indicatorPosition, indicatorLineColor, indicatorWidth, indicatorLineWidth,indicatorStyle, indicatorPositionPadding, animated, autoScroll, onChange} = this.props;
 
     if (!indicatorPosition && barPosition == 'bottom') {
       indicatorPosition = 'top';
@@ -111,6 +113,8 @@ export default class SegmentedView extends Component {
           indicatorPosition={indicatorPosition}
           indicatorLineColor={indicatorLineColor}
           indicatorLineWidth={indicatorLineWidth}
+          indicatorWidth={indicatorWidth}
+          indicatorStyle={indicatorStyle}
           indicatorPositionPadding={indicatorPositionPadding}
           animated={animated}
           autoScroll={autoScroll}
